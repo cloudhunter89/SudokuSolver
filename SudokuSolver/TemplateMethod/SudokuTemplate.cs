@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SudokuSolver.TemplateMethod
 {
-    class SudokuTemplate
+    abstract class SudokuTemplate
     {
+        protected abstract SudokuCell SelectCell();
+        protected abstract char SelectCandidateValue(SudokuCell CandidateCell);
+        protected abstract 
     }
 }
