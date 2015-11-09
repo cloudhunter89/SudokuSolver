@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GridEnumerator.cs" />
     <Compile Include="SudokuCell.cs" />
     <Compile Include="SudokuGrid.cs" />
     <Compile Include="SudokuGridComponent.cs" />

@@ -65,11 +65,18 @@ namespace SudokuSolver
         {
             bool isValid = true;
 
-            foreach (SudokuCell cell in Cells)
+            if (cellToValidate.Value == '-')
             {
-                if (!cellToValidate.Equals(cell))
+                isValid = true;
+            }
+            else
+            {
+                foreach (SudokuCell cell in Cells)
                 {
-                    isValid &= cellToValidate.Value != cell.Value;
+                    if (!cellToValidate.Equals(cell))
+                    {
+                        isValid &= cellToValidate.Value != cell.Value;
+                    }
                 }
             }
 

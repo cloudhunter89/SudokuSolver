@@ -31,6 +31,13 @@ namespace TestSudokuSolver
 
             row[8].UpdateValue('2');
             Assert.IsTrue(row.Validate());
+
+            SudokuCell newCell = new SudokuCell('-', dimension);
+            row.AddCell(newCell);
+
+            Assert.AreEqual(row.Cells.Count, dimension + 1);
+            Assert.AreEqual(newCell, row.GetCell(9));
+            Assert.AreEqual('-', row.GetCell(9).Value);
         }
     }
 }
