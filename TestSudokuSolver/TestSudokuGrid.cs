@@ -24,7 +24,7 @@ namespace TestSudokuSolver
 
         static int testInvalidDimension = 5;
         [TestMethod]
-        public void TestConstructor()
+        public void TestGridConstructor()
         {
             SudokuGrid testGrid = new SudokuGrid(testDimension1, testSymbols1, testPuzzle1);
             for (int i = 0; i < testDimension1; i++)
@@ -49,6 +49,36 @@ namespace TestSudokuSolver
                 {
                 }
             }
+            SudokuGrid invalidGrid = null;
+            try
+            {
+                invalidGrid = new SudokuGrid(testInvalidDimension, testSymbols1, testPuzzle1);
+                Assert.Fail();
+            }
+            catch (ArgumentException arg)
+            {
+                Assert.AreEqual("Dimension of the grid must be a perfect square", arg.Message);
+            }
+
+            Assert.IsNull(invalidGrid);
+        }
+
+        [TestMethod]
+        public void TestStaticGridMembers()
+        {
+            int dimension = 9;
+            int firstColumn = 0;
+            int middleColumn = dimension / 2;
+            int LastColumn = dimension - 1;
+            int firstRow = 0;
+            int middleRow = dimension / 2;
+            int lastRow = dimension - 1;
+
+            Assert.AreEqual(0, SudokuGrid.GetBoxOrder(dimension, firstRow , firstColumn));
+            Assert.AreEqual(4, SudokuGrid.GetBoxOrder(dimension, middleRow, middleColumn));
+            Assert.AreEqual(8, SudokuGrid.GetBoxOrder(dimension, lastRow, LastColumn));
+            Assert.AreEqual(7, SudokuGrid.GetBoxOrder(dimension, lastRow, middleColumn));
+            Assert.AreEqual(3, SudokuGrid.GetBoxOrder(dimension, middleRow, firstColumn));
         }
     }
 }

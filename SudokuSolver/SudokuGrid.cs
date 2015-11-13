@@ -17,6 +17,12 @@ namespace SudokuSolver
 
         public SudokuGrid(int dimension, string symbols, string[] rows)
         {
+            int dimensionRoot = (int)Math.Sqrt(dimension);
+            if (dimensionRoot * dimensionRoot != dimension)
+            {
+                throw new ArgumentException("Dimension of the grid must be a perfect square");
+            }
+
             Dimension = dimension;
             string[] tempSymbolList = symbols.Split(' ');
             Symbols = new char[Dimension + 1]; // allow for holding the symbol for an empty cell '-'
@@ -78,10 +84,21 @@ namespace SudokuSolver
             return m_boxes[box];
         }
 
-        public static int GetBoxOrder(int row, int col)
+        public static int GetBoxOrder(int dimension, int row, int col)
         {
             int boxEntry = 0;
-            boxEntry = (col % 3) + (row % 3) + (row / 3) * 3;
+            int dimensionRoot = (int)Math.Sqrt(dimension);
+            boxEntry = (col % dimensionRoot) + ((row % dimensionRoot) * dimensionRoot);
+            return boxEntry; 
+        }
+
+        public static int GetBoxOrder(SudokuCell cell)
+        {
+            int boxEntry = 0;
+            int col = cell.Column;
+            int row = cell.Row;
+            int dimensionRoot = (int)Math.Sqrt(cell.Markup.Count());
+            boxEntry = (col % dimensionRoot) + (row % dimensionRoot) + (row % dimensionRoot) * dimensionRoot;
             return boxEntry;
         }
 
