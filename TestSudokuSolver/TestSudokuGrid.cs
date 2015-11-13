@@ -79,6 +79,18 @@ namespace TestSudokuSolver
             Assert.AreEqual(8, SudokuGrid.GetBoxOrder(dimension, lastRow, LastColumn));
             Assert.AreEqual(7, SudokuGrid.GetBoxOrder(dimension, lastRow, middleColumn));
             Assert.AreEqual(3, SudokuGrid.GetBoxOrder(dimension, middleRow, firstColumn));
+
+            SudokuGrid testGrid = new SudokuGrid(testDimension1, testSymbols1, testPuzzle1);
+
+            int counter = 0;
+            foreach (SudokuCell cell in testGrid)
+            {
+                int compareTo = 3 * ((counter / 9) % 3) + (counter % 9) % 3;
+
+                Assert.AreEqual(compareTo, SudokuGrid.GetBoxOrder(cell));
+
+                counter++;
+            }
         }
     }
 }

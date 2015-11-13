@@ -98,7 +98,7 @@ namespace SudokuSolver
             int col = cell.Column;
             int row = cell.Row;
             int dimensionRoot = (int)Math.Sqrt(cell.Markup.Count());
-            boxEntry = (col % dimensionRoot) + (row % dimensionRoot) + (row % dimensionRoot) * dimensionRoot;
+            boxEntry = (col % dimensionRoot) + (row % dimensionRoot) * dimensionRoot;
             return boxEntry;
         }
 
